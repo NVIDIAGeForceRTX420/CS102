@@ -1,0 +1,88 @@
+---
+title: "CS 102 Activity 2"
+author: "Anton"
+date: "2024-02-6"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r 1}
+library(rvest)
+library(httr)
+library(polite)
+```
+
+```{r 2}
+polite::use_manners(save_as = 'polite_scrape.R')
+```
+
+```{r 3}
+url_template <- 'https://www.imdb.com/title/tt0068646/reviews/_ajax?ref_=undefined&paginationKey=%s'
+```
+
+```{r 4}
+scrape_page <- function(url_template, pagination_key) {
+  session <- bow(sprintf(url_template, pagination_key), user_agent = "Educational")
+  
+  Usernames <- scrape(session) %>% html_nodes('span.display-name-link') %>% html_text()
+  ReviewerDates <- scrape(session) %>% html_nodes('span.review-date') %>% html_text()
+  ReviewerContents <- scrape(session) %>% html_nodes('div.text.show-more__control') %>% html_text()
+  Ratings <- scrape(session) %>% html_nodes('span.rating-other-user-rating') %>% html_text()
+  
+  pagination_key <- scrape(session) %>% html_nodes("div.load-more-data") %>% html_attr("data-key")
+  
+  return(list(Usernames = Usernames, ReviewerDates = ReviewerDates, ReviewerContents = ReviewerContents, Ratings = Ratings, pagination_key = pagination_key))
+}
+```
+
+```{r 5}
+Usernames <- character(0)
+ReviewerDates <- character(0)
+ReviewerContents <- character(0)
+Ratings <- character(0)
+pagination_key <- ""
+```
+
+```{r 6}
+reviews_to_scrape <- 300
+per_page <- 25
+pages_to_scrape <- ceiling(reviews_to_scrape / per_page)
+```
+
+```{r 7}
+for (page in 1:pages_to_scrape) {
+  scraped_data <- scrape_page(url_template, pagination_key)
+  
+  Usernames <- c(Usernames, scraped_data$Usernames)
+  ReviewerDates <- c(ReviewerDates, scraped_data$ReviewerDates)
+  ReviewerContents <- c(ReviewerContents, scraped_data$ReviewerContents)
+  Ratings <- c(Ratings, scraped_data$Ratings)
+  
+  pagination_key <- scraped_data$pagination_key
+
+  if (length(Usernames) >= reviews_to_scrape) {
+    break
+  }
+}
+```
+
+```{r 8}
+DataFrame <- data.frame(
+  Usernames = Usernames[1:300],
+  Reviewer_Date = ReviewerDates[1:300],
+  Reviewer_Content = ReviewerContents[1:300],
+  Rating = Ratings[1:300]
+)
+```
+
+```{r 9}
+write.csv(DataFrame, file = "CS102A2.csv", row.names = FALSE)
+```
+
+```{r 10}
+# Print the data frame
+print(DataFrame)
+```
