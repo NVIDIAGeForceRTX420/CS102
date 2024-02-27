@@ -11,16 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r 1}
 # Read CSV files into data frames
-DF1 <- read.csv("1_imdb_reviews.csv")
-DF2 <- read.csv("2_imdb_reviews.csv")
-DF3 <- read.csv("3_imdb_reviews.csv")
-DF4 <- read.csv("4_imdb_reviews.csv")
-DF5 <- read.csv("5_imdb_reviews.csv")
-DF6 <- read.csv("6_imdb_reviews.csv")
-DF7 <- read.csv("7_imdb_reviews.csv")
-DF8 <- read.csv("8_imdb_reviews.csv")
-DF9 <- read.csv("9_imdb_reviews.csv")
-DF10 <- read.csv("10_imdb_reviews.csv")
+DF1 <- read.csv("CS102Movie1.csv")
+DF2 <- read.csv("CS102Movie2.csv")
+DF3 <- read.csv("CS102Movie3.csv")
+DF4 <- read.csv("CS102Movie4.csv")
+DF5 <- read.csv("CS102Movie5.csv")
+DF6 <- read.csv("CS102Movie6.csv")
+DF7 <- read.csv("CS102Movie7.csv")
+DF8 <- read.csv("CS102Movie8.csv")
+DF9 <- read.csv("CS102Movie9.csv")
+DF10 <- read.csv("C102Movie10.csv")
 
 # Merge data frames
 merged_DF <- merge(DF1, DF2, all = TRUE)
@@ -34,5 +34,5 @@ merged_DF <- merge(merged_DF, DF9, all = TRUE)
 merged_DF <- merge(merged_DF, DF10, all = TRUE)
 
 # Write the merged data frame to a CSV file
-write.csv(merged_DF, "merged_imdb_reviews.csv", row.names = FALSE)
+write.csv(merged_DF, "Merged_Movie_Reviews.csv", row.names = FALSE)
 ```
