@@ -2,7 +2,7 @@
 title: "CS102 Activity 3"
 author: "Anton Geganzo"
 date: "2024-02-20"
-output: pdf_document
+output: pDF_document
 ---
 
 ```{r setup, include=FALSE}
@@ -11,28 +11,28 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r 1}
 # Read CSV files into data frames
-df1 <- read.csv("1_imdb_reviews.csv")
-df2 <- read.csv("2_imdb_reviews.csv")
-df3 <- read.csv("3_imdb_reviews.csv")
-df4 <- read.csv("4_imdb_reviews.csv")
-df5 <- read.csv("5_imdb_reviews.csv")
-df6 <- read.csv("6_imdb_reviews.csv")
-df7 <- read.csv("7_imdb_reviews.csv")
-df8 <- read.csv("8_imdb_reviews.csv")
-df9 <- read.csv("9_imdb_reviews.csv")
-df10 <- read.csv("10_imdb_reviews.csv")
+DF1 <- read.csv("1_imdb_reviews.csv")
+DF2 <- read.csv("2_imdb_reviews.csv")
+DF3 <- read.csv("3_imdb_reviews.csv")
+DF4 <- read.csv("4_imdb_reviews.csv")
+DF5 <- read.csv("5_imdb_reviews.csv")
+DF6 <- read.csv("6_imdb_reviews.csv")
+DF7 <- read.csv("7_imdb_reviews.csv")
+DF8 <- read.csv("8_imdb_reviews.csv")
+DF9 <- read.csv("9_imdb_reviews.csv")
+DF10 <- read.csv("10_imdb_reviews.csv")
 
 # Merge data frames
-merged_df <- merge(df1, df2, all = TRUE)
-merged_df <- merge(merged_df, df3, all = TRUE)
-merged_df <- merge(merged_df, df4, all = TRUE)
-merged_df <- merge(merged_df, df5, all = TRUE)
-merged_df <- merge(merged_df, df6, all = TRUE)
-merged_df <- merge(merged_df, df7, all = TRUE)
-merged_df <- merge(merged_df, df8, all = TRUE)
-merged_df <- merge(merged_df, df9, all = TRUE)
-merged_df <- merge(merged_df, df10, all = TRUE)
+merged_DF <- merge(DF1, DF2, all = TRUE)
+merged_DF <- merge(merged_DF, DF3, all = TRUE)
+merged_DF <- merge(merged_DF, DF4, all = TRUE)
+merged_DF <- merge(merged_DF, DF5, all = TRUE)
+merged_DF <- merge(merged_DF, DF6, all = TRUE)
+merged_DF <- merge(merged_DF, DF7, all = TRUE)
+merged_DF <- merge(merged_DF, DF8, all = TRUE)
+merged_DF <- merge(merged_DF, DF9, all = TRUE)
+merged_DF <- merge(merged_DF, DF10, all = TRUE)
 
 # Write the merged data frame to a CSV file
-write.csv(merged_df, "merged_imdb_reviews.csv", row.names = FALSE)
+write.csv(merged_DF, "merged_imdb_reviews.csv", row.names = FALSE)
 ```
