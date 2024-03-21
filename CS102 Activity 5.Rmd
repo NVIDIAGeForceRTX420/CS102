@@ -1,19 +1,15 @@
 ---
-title: "CS102 Activity 5"
+title: "Test on Databases"
 author: "Anton Geganzo"
-date: "2024-02-27"
+date: "2024-2-27"
 output: pdf_document
-          df_print : paged
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-```{r}
-
+```{r Test}
 #install.packages("dplyr")
 #install.packages("rvest")
 #install.packages("polite")
